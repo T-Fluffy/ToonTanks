@@ -32,7 +32,6 @@ private:
 
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);
-
 	void Move();
 	void Rotate();
 
