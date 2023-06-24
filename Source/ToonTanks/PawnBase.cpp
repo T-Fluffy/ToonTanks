@@ -69,8 +69,7 @@ void APawnBase::TEST(FString msg)
 	// test ? UE_LOG(LogTemp, Warning, TEXT("Base Call")) : UE_LOG(LogTemp, Warning, TEXT("%s"), *msg) ;
 	if (test)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Base Call"));
-	}else 
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *msg);
+			UE_LOG(LogTemp, Warning, TEXT("Base Call"));
+	}else	UE_LOG(LogTemp, Warning, TEXT("%s"), *msg);
 		
 }
