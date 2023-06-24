@@ -18,6 +18,13 @@ void APawnTurret::BeginPlay()
 	TEST("Call from Turret");
 }
 
+void APawnTurret::HandleDestruction()
+{
+	// Call base pawn class HandleDestruction to play effects.
+	Super::HandleDestruction();
+	Destroy();
+}
+
 void APawnTurret::TEST(FString msg)
 {
 	//Call PawnBase TEST()
