@@ -4,6 +4,7 @@
 #include "ProjectileBase.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AProjectileBase::AProjectileBase()
@@ -12,6 +13,8 @@ AProjectileBase::AProjectileBase()
 	PrimaryActorTick.bCanEverTick = false;
 
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
+
 	RootComponent = ProjectileMesh;
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
@@ -24,7 +27,24 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 }
 
+void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherCamp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	//Try to get a reference to the owning class.
+	AActor* MyOwner = GetOwner();
+	//if we can't a valid reference, return to check against the owner.
+	if (!MyOwner)
+	{
+		return;
+	}
+	//if the other actor isnt self or owner and exists, then apply damage.
+	if (OtherActor && OtherActor!=this && OtherActor!= MyOwner)
+	{
+		UGameplayStatics::ApplyDamage(OtherActor,Damage,MyOwner->GetInstigatorController(),this,DamageType);
+	}
+	//play some effects here during the polish phase.
+	Destroy();
+}
 
