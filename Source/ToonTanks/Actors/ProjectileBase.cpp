@@ -39,10 +39,14 @@ void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 	{
 		return;
 	}
+	check(OtherActor != nullptr);
 	//if the other actor isnt self or owner and exists, then apply damage.
 	if (OtherActor && OtherActor!=this && OtherActor!= MyOwner)
 	{
-		UGameplayStatics::ApplyDamage(OtherActor,Damage,MyOwner->GetInstigatorController(),this,DamageType);
+		UGameplayStatics::ApplyDamage(OtherActor,
+									  Damage,
+									  MyOwner->GetInstigatorController(),
+									  this,DamageType);
 	}
 	//play some effects here during the polish phase.
 	Destroy();

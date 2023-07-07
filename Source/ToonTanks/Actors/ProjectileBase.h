@@ -13,15 +13,29 @@ class TOONTANKS_API AProjectileBase : public AActor
 {
 	GENERATED_BODY()
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UProjectileMovementComponent* ProjectileMovement;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* ProjectileMesh;
-	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	//void InitComponents();
+	UPROPERTY(VisibleAnywhere,
+			  BlueprintReadOnly,
+			  Category = "Components",
+			  meta = (AllowPrivateAccess = "true"))
+	UProjectileMovementComponent* ProjectileMovement=nullptr;
+	UPROPERTY(VisibleAnywhere,
+			  BlueprintReadOnly,
+			  Category = "Components",
+			  meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* ProjectileMesh = nullptr;
+	UPROPERTY(EditDefaultsOnly, 
+			  Category = "Damage")
 	TSubclassOf<UDamageType> DamageType;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Move", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere,
+			  BlueprintReadOnly,
+			  Category = "Move",
+		      meta = (AllowPrivateAccess = "true"))
 	float MovementSpeed = 1300;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere,
+			  BlueprintReadOnly,
+		      Category = "Damage",
+			  meta = (AllowPrivateAccess = "true"))
 	float Damage = 50;
 
 	UFUNCTION()
