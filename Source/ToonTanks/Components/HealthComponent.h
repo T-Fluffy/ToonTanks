@@ -15,19 +15,16 @@ class TOONTANKS_API UHealthComponent : public UActorComponent
 private:
 	UPROPERTY(EditAnywhere)
 	float DefaultHealth = 100.0f;
+	
 	float Health = 0.0f;
-	ATankGameModeBase* GameModeRef=nullptr;
+	ATankGameModeBase* GameModeRef;
 public:	
 	// Sets default values for this component's properties
 	UHealthComponent();
 
 protected:
 	// Called when the game starts
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
 	UFUNCTION()
-	void TakeDamage(AActor* DamagedActor,
-					float Damage,
-					const UDamageType* DamageType,
-					AController* InstigatedBy,
-					AActor* DamageCauser);
+	void TakeDamage(AActor* DamagedActor,float Damage,const UDamageType* DamageType,AController* InstigatedBy,AActor* DamageCauser);
 };

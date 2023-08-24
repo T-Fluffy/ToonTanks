@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/CapsuleComponent.h"
 #include "PawnBase.generated.h"
 
 class UCapsuleComponent;
 class UStaticMeshComponent;
-class USceneComponent;
 class AProjectileBase;
 UCLASS()
 class TOONTANKS_API APawnBase : public APawn
