@@ -59,5 +59,5 @@ protected:
 
 	virtual void HandleDestruction();
 
-	virtual void TEST(FString msg);
+	//virtual void TEST(FString msg);
 };

@@ -15,7 +15,7 @@ void APawnTurret::BeginPlay()
 
 	PlayerPawn = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
-	TEST("Call from Turret");
+	//TEST("Call from Turret");
 }
 
 void APawnTurret::HandleDestruction()
@@ -25,11 +25,11 @@ void APawnTurret::HandleDestruction()
 	Destroy();
 }
 
-void APawnTurret::TEST(FString msg)
-{
-	//Call PawnBase TEST()
-	Super::TEST("Base call");
-}
+//void APawnTurret::TEST(FString msg)
+//{
+//	//Call PawnBase TEST()
+//	Super::TEST("Base call");
+//}
 
 //Called every frame
 void APawnTurret::Tick(float DeltaTime)

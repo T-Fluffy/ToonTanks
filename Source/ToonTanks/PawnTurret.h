@@ -29,13 +29,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllwoPrivateAccess = "true"))
 	float FireRange = 500.0f;
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void Tick(float DeltaTime) override;
 protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	void BeginPlay() override;
 
-	virtual void HandleDestruction() override;
+	void HandleDestruction() override;
 
-	void TEST(FString msg) override;
+	//void TEST(FString msg) override;
 	
 };

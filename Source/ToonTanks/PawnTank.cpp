@@ -48,7 +48,6 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveForward", this, &APawnTank::CalculateMoveInput);
 	PlayerInputComponent->BindAxis("Turn", this, &APawnTank::CalculateRotateInput);
 	PlayerInputComponent->BindAction("FIRE",IE_Pressed,this,&APawnTank::FIRE);
-
 }
 
 void APawnTank::HandleDestruction()

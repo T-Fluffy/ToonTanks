@@ -22,7 +22,7 @@ private:
 	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
 protected:
-	virtual void BeginPlay() override;
+	void BeginPlay() override;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void GameStart();

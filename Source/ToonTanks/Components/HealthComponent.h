@@ -17,14 +17,15 @@ private:
 	float DefaultHealth = 100.0f;
 	
 	float Health = 0.0f;
-	ATankGameModeBase* GameModeRef;
+	ATankGameModeBase* GameModeRef=nullptr;
 public:	
 	// Sets default values for this component's properties
 	UHealthComponent();
-
+	UFUNCTION()
+	void TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 protected:
 	// Called when the game starts
-	virtual void BeginPlay() override;
-	UFUNCTION()
-	void TakeDamage(AActor* DamagedActor,float Damage,const UDamageType* DamageType,AController* InstigatedBy,AActor* DamageCauser);
+	void BeginPlay() override;
+	
+
 };

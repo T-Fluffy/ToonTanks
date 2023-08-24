@@ -62,14 +62,14 @@ void APawnBase::HandleDestruction()
 
 }
 
-void APawnBase::TEST(FString msg)
-{
-	bool test = msg.IsEmpty();
-
-	// test ? UE_LOG(LogTemp, Warning, TEXT("Base Call")) : UE_LOG(LogTemp, Warning, TEXT("%s"), *msg) ;
-	if (test)
-	{
-			UE_LOG(LogTemp, Warning, TEXT("Base Call"));
-	}else	UE_LOG(LogTemp, Warning, TEXT("%s"), *msg);
-		
-}
+//void APawnBase::TEST(FString msg)
+//{
+//	bool test = msg.IsEmpty();
+//
+//	// test ? UE_LOG(LogTemp, Warning, TEXT("Base Call")) : UE_LOG(LogTemp, Warning, TEXT("%s"), *msg) ;
+//	if (test)
+//	{
+//			UE_LOG(LogTemp, Warning, TEXT("Base Call"));
+//	}else	UE_LOG(LogTemp, Warning, TEXT("%s"), *msg);
+//		
+//}
