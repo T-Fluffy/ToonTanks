@@ -22,20 +22,35 @@ void UHealthComponent::BeginPlay()
 
 	Health = DefaultHealth;
 	GameModeRef = Cast<ATankGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
-	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::TakeDamage);
+	GetOwner()->OnTakeAnyDamage.AddDynamic(this,
+										   &UHealthComponent::TakeDamage);
 	
 }
 
-void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+void 
+UHealthComponent::TakeDamage(AActor* DamagedActor,
+							 float Damage, 
+							 const UDamageType* DamageType,
+							 AController* InstigatedBy,
+							 AActor* DamageCauser)
 {
-	if (Damage == 0 || Health <= 0)
+	check(DamagedActor != nullptr);
+	check(Damage >= 0.0f);
+	check(DamageType != nullptr);
+	check(InstigatedBy != nullptr);
+	check(DamageCauser != nullptr);
+	if (Health <= 0.0f)
 	{
 		return; 
 	}
-	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth); //avoid drop health below 0 or above max
-	if (Health <= 0)
+	//avoid drop health below 0 or above max
+	Health = FMath::Clamp(Health - Damage,
+						  0.0f, 
+						  DefaultHealth); 
+	if (Health <= 0.0f && GameModeRef!=nullptr)
 	{ 
-		if (GameModeRef)
+		GameModeRef->ActorDied(GetOwner());
+		if (GameModeRef!=nullptr)
 		{
 			GameModeRef->ActorDied(GetOwner());
 		}
