@@ -5,7 +5,6 @@
 #include "Components/CapsuleComponent.h"
 #include "ToonTanks/Actors/ProjectileBase.h"
 
-
 // Sets default values
 APawnBase::APawnBase()
 {

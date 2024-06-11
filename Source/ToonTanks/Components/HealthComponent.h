@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+
 class ATankGameModeBase;
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TOONTANKS_API UHealthComponent : public UActorComponent
@@ -15,17 +16,21 @@ class TOONTANKS_API UHealthComponent : public UActorComponent
 private:
 	UPROPERTY(EditAnywhere)
 	float DefaultHealth = 100.0f;
-	
+
+	UPROPERTY(EditAnywhere)
 	float Health = 0.0f;
+
+	UPROPERTY()
 	ATankGameModeBase* GameModeRef=nullptr;
 public:	
 	// Sets default values for this component's properties
 	UHealthComponent();
+
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 protected:
 	// Called when the game starts
 	void BeginPlay() override;
-	
-
+	// Called every frame 
+	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 };

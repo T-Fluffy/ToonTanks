@@ -10,7 +10,7 @@ UHealthComponent::UHealthComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = false;
+	PrimaryComponentTick.bCanEverTick = true;
 
 }
 
@@ -27,6 +27,12 @@ void UHealthComponent::BeginPlay()
 	
 }
 
+void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+
 void UHealthComponent::TakeDamage(AActor* DamagedActor,
 								  float Damage, 
 								  const UDamageType* DamageType, 
@@ -38,6 +44,8 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor,
 	check(DamageType != nullptr);
 	check(InstigatedBy != nullptr);
 	check(DamageCauser != nullptr);
+
+	UE_LOG(LogTemp, Warning, TEXT("DAMAGE TAKKEN BY %s to %s"), *DamageCauser->GetName(), *DamagedActor->GetName())
 
 	if(GameModeRef==nullptr) 
 	{
@@ -54,7 +62,6 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor,
 	{ 
 		GameModeRef->ActorDied(GetOwner());
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("DAMAGE TAKKEN BY %s to %s"),*DamageCauser->GetName(),*DamagedActor->GetName())
+	
 }
 

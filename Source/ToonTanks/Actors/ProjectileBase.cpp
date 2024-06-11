@@ -21,7 +21,7 @@ AProjectileBase::AProjectileBase()
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->InitialSpeed = MovementSpeed;
 	ProjectileMovement->MaxSpeed = MovementSpeed;
-	InitialLifeSpan = 3.0f;
+	InitialLifeSpan = 1.0f;
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +47,8 @@ void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 		UGameplayStatics::ApplyDamage(OtherActor,
 									  Damage,
 									  MyOwner->GetInstigatorController(),
-									  this,DamageType);
+									  this,
+									  DamageType);
 	}
 	//play some effects here during the polish phase.
 	Destroy();

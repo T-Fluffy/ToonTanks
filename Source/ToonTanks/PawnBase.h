@@ -7,9 +7,12 @@
 #include "Components/CapsuleComponent.h"
 #include "PawnBase.generated.h"
 
+
 class UCapsuleComponent;
 class UStaticMeshComponent;
 class AProjectileBase;
+
+
 UCLASS()
 class TOONTANKS_API APawnBase : public APawn
 {
@@ -46,6 +49,7 @@ private:
 			  Category="Projectile Type",
 			  meta=(AllowPrivateAccess="True"))
 	TSubclassOf<AProjectileBase> ProjectileClass;
+
 public:
 
 	// Sets default values for this pawn's properties
@@ -53,10 +57,13 @@ public:
 
 protected:
 
+	UFUNCTION()
 	void RotateTurret(FVector LookAtTarget);
 
+	UFUNCTION()
 	void FIRE();
 
+	UFUNCTION()
 	virtual void HandleDestruction();
 
 	//virtual void TEST(FString msg);

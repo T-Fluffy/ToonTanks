@@ -12,6 +12,7 @@ UCLASS()
 class TOONTANKS_API AProjectileBase : public AActor
 {
 	GENERATED_BODY()
+
 private:
 	//void InitComponents();
 	UPROPERTY(VisibleAnywhere,
@@ -19,19 +20,23 @@ private:
 			  Category = "Components",
 			  meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement=nullptr;
+
 	UPROPERTY(VisibleAnywhere,
 			  BlueprintReadOnly,
 			  Category = "Components",
 			  meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* ProjectileMesh = nullptr;
+
 	UPROPERTY(EditDefaultsOnly, 
 			  Category = "Damage")
 	TSubclassOf<UDamageType> DamageType;
+
 	UPROPERTY(VisibleAnywhere,
 			  BlueprintReadOnly,
 			  Category = "Move",
 		      meta = (AllowPrivateAccess = "true"))
 	float MovementSpeed = 1300;
+
 	UPROPERTY(VisibleAnywhere,
 			  BlueprintReadOnly,
 		      Category = "Damage",
@@ -42,8 +47,10 @@ private:
 public:	
 	// Sets default values for this actor's properties
 	AProjectileBase();
+
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherCamp, FVector NormalImpulse, const FHitResult& Hit);
+
 protected:
 	// Called when the game starts or when spawned
 	void BeginPlay() override;
